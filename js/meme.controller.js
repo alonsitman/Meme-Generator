@@ -2,7 +2,6 @@
 
 let gElCanvas
 let gCtx
-let gImg
 
 // function renderMeme() {
 //     const meme = getMeme()
@@ -16,6 +15,36 @@ function onSelectImg(elImg) {
 }
 
 function renderMeme() {
-    gElCanvas.height = (gImg.naturalHeight / gImg.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(gImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    var img = gMeme.img
+    
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
+
+function onAddTxt(val) {
+    setLineTxt(val)
+    gCtx.fillText(gMeme.txtLine, 50, 50)
+}
+
+// function onSetColor {
+//     gCtx.fillStyle = document.getElementById('set-color').value
+// }
+
+// function onSetFont() {
+    // gCtx.font = "bold 18px Arial"
+    // gCtx.font = document.querySelector('set-font').value
+// }
+
+function onSave() {
+    saveToStorage(MEMES_DB, gMeme)
+}
+
+// function onLoad() {
+//     gMeme = loadFromStorage(MEMES_DB)
+
+
+// }
+
+// function onClearEdit() {
+
+// }

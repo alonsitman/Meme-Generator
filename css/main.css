@@ -13,7 +13,7 @@ button {
 
     font-size: 1.3em;
 
-    background-color: orange;
+    background-color: rgb(128, 24, 24);
 }
 
 .logo {
@@ -30,9 +30,11 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
+    color: white
 }
 
-.main-nav-list {
+a {
     /* text-decoration-line: none; */
     color: white
 }
@@ -65,12 +67,11 @@ button {
     justify-content: center;
 
     margin: 10px auto;
-    /* text-decoration: dashed; */
 }
 
 .search-bar input {
     border: none;
-    /* text-decoration: dashed; */
+    border-bottom: 1px solid;
 }
 
 .filter-container {
@@ -96,6 +97,8 @@ canvas {
 
 .editor-tools {
     width: 100%;
+
+    background-color: blueviolet;
 }
 
 .main-footer {
@@ -106,5 +109,6 @@ canvas {
 
 
     height: 80px;
-    background-color: orange;
+    margin-bottom: 0;
+    background-color: rgb(128, 24, 24);
 }

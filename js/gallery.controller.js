@@ -4,7 +4,7 @@ function renderGallery() {
     var strHTML = ''
     var strHTMLs = []
 
-    for (var i = 1; i < 5; i++) {
+    for (var i = 1; i < 19; i++) {
         const strArticle = `<article class="gallery-img">
                         <img src="meme-imgs/${i}.jpg" alt="meme-img" onclick="onSelectImg(this)">
                     </article>`

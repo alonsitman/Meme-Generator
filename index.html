@@ -8,7 +8,7 @@
 </head>
 <body onload="onInit()">
     <header class="main-header">
-       <div class="logo">Mememe</div>
+       <div class="logo">memeMe</div>
         <nav class="main-nav">
             <ul class="main-nav-list" style="list-style: none">
                 <li><a href="#" style="text-decoration: none">Gallery</a></li>
@@ -20,7 +20,7 @@
     
     <main class="main-content">
         <section class="img-gallery">
-            <section class="search-filter-options">
+            <div class="search-filter-options">
                 <div class="search-bar">
                     <input type="text" class="search-text-input" placeholder="Enter search keyword">
                 </div>
@@ -30,87 +30,30 @@
                     <button>sad</button>
                     <button>dogs</button>
                 </div>
-            </section>
+            </div>
             
-            <section class="gallery-grid-container">
-                <!-- <article class="gallery-img">
-                    <img src="meme-imgs/1.jpg" alt="funny meme" onclick="onSelectImg(this)">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/2.jpg" alt="surprised meme" onclick="onSelectImg(this)">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/3.jpg" alt="sad meme" onclick="onSelectImg(this)">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/4.jpg" alt="dogs meme" onclick="onSelectImg(this)">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/5.jpg" alt="dogs meme" onclick="onSelectImg(this)">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/6.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/7.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/8.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/9.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/10.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/11.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/12.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/13.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/14.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/15.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/16.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/17.jpg" alt="dogs meme">
-                </article>
-                <article class="gallery-img">
-                    <img src="meme-imgs/18.jpg" alt="dogs meme">
-                </article> -->
-            </section>
+            <div class="gallery-grid-container"></div>
         </section>
 
         <section class="meme-editor">
             <div class="canvas-container">   
-                <canvas width="450" height="450" class="meme-editor-canvas">
-
-                </canvas>
+                <canvas width="450" height="450" class="meme-editor-canvas"></canvas>
             </div>
-            <section class="editor-tools">
-                <input type="text" class="meme-text-input">
-            </section>
 
+            <div class="editor-tools">
+                <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onAddTxt(this.value)">
+                <div class="actions">
+                    <button onclick="onSave()">Save</button>
+                    <!-- <button onclick="onLoad()">Load</button>
+                    <button onclick="onClearCanvas()">Clear</button> -->
+                </div>
+            </div>
         </section>
     </main>
 
     <footer class="main-footer">
-        <div class="logo">Mememe</div>
+        <div class="logo">memeMe</div>
         <small class="footer-right">@coffee rights 2024</small>
-        <!-- <ul class="footer-social flex clean-list">
-            <li><a href="#">facebook</a></li>
-            <li><a href="#">twitter</a></li>
-            <li><a href="#">instagram</a></li>
-        </ul> -->
     </footer>
 
     <script src="js/services/utils.service.js"></script>
