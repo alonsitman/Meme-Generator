@@ -10,20 +10,24 @@ let gCtx
 // }
 
 function onSelectImg(elImg) {
+    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+    
     setImg(elImg)
     renderMeme()
 }
 
 function renderMeme() {
-    var img = gMeme.img
-    
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    var img = document.createElement('img')
+    img.src = `meme-imgs/${gMeme.selectedImgId}.jpg`
+   
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function onAddTxt(val) {
-    setLineTxt(val)
-    gCtx.fillText(gMeme.txtLine, 50, 50)
+function onAddTxt(txt) {
+    setLineTxt(txt)
+    
+    
+    // gCtx.fillText(txt, 50, 50)
 }
 
 // function onSetColor {
@@ -36,14 +40,16 @@ function onAddTxt(val) {
 // }
 
 function onSave() {
+    console.log('saved this:', gMeme)
     saveToStorage(MEMES_DB, gMeme)
 }
 
-// function onLoad() {
-//     gMeme = loadFromStorage(MEMES_DB)
-
-
-// }
+function onLoad() {
+    gMeme = loadFromStorage(MEMES_DB)
+    console.log('gMeme:', gMeme)
+    console.log('.img:', gMeme.img)
+    renderMeme()
+}
 
 // function onClearEdit() {
 

@@ -6,7 +6,7 @@ function renderGallery() {
 
     for (var i = 1; i < 19; i++) {
         const strArticle = `<article class="gallery-img">
-                        <img src="meme-imgs/${i}.jpg" alt="meme-img" onclick="onSelectImg(this)">
+                        <img src="meme-imgs/${i}.jpg" id="${i}" alt="meme-img" onclick="onSelectImg(this)">
                     </article>`
         
         strHTMLs.push(strArticle)
