@@ -26,8 +26,10 @@ function renderMemeLine() {
     var line = getMemeLine()
     const { pos, txt, size, fillColor, borderColor } = line
 
+	gCtx.font = `(${size}px Arial)`
+	gCtx.fillStyle = fillColor
     gCtx.fillText(txt, pos.x, pos.y)
-
+	// gCtx.strokeText(txt, pos.x, pos.y)
 }
 
 function onAddTxt(txt) {
@@ -35,20 +37,25 @@ function onAddTxt(txt) {
 
     // renderMemeLine()
     renderMeme()
-    
-   
 }
 
 function onSetColor() {
     const color = document.getElementById('set-color').value
     setColor(color)
-    gCtx.fillStyle = color
+    renderMemeLine()
 }
 
-// function onSetFont() {
+function onEnlargeFont() {
     // gCtx.font = "bold 18px Arial"
     // gCtx.font = document.querySelector('set-font').value
-// }
+	incrementSize()
+	renderMemeLine()
+}
+
+function onShrinkFont() {
+	decrementSizeSize()
+	renderMemeLine()
+}
 
 function onMoveLine(ev) {
 	const { isDrag } = getMemeLine()
@@ -107,12 +114,12 @@ function onSave() {
     saveToStorage(MEMES_DB, gMeme)
 }
 
-function onLoad() {
-    gMeme = loadFromStorage(MEMES_DB)
-    console.log('gMeme:', gMeme)
-    console.log('.img:', gMeme.img)
-    renderMeme()
-}
+// function onLoad() {
+//     gMeme = loadFromStorage(MEMES_DB)
+//     console.log('gMeme:', gMeme)
+//     console.log('.img:', gMeme.img)
+//     renderMeme()
+// }
 
 // function onClearEdit() {
 

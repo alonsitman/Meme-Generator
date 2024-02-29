@@ -86,4 +86,15 @@ function moveLine(dx, dy) {
 function setColor(color) {
     const line = getMemeLine()
     line.fillColor = color
+    console.log('fillcolor:', line.fillColor)
+}
+
+function incrementSize() {
+    const line = getMemeLine()
+    line.size++
+}
+
+function decrementSize() {
+    const line = getMemeLine()
+    line.size--
 }
