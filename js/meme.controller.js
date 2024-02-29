@@ -16,7 +16,7 @@ function onSelectImg(elImg) {
 
 function renderMeme() {
     var img = document.createElement('img')
-    img.src = `meme-imgs/${gMeme.selectedImgId}.jpg`
+    img.src = `img/${gMeme.selectedImgId}.jpg`
    
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     renderMemeLine()
@@ -39,9 +39,11 @@ function onAddTxt(txt) {
    
 }
 
-// function onSetColor {
-//     gCtx.fillStyle = document.getElementById('set-color').value
-// }
+function onSetColor() {
+    const color = document.getElementById('set-color').value
+    setColor(color)
+    gCtx.fillStyle = color
+}
 
 // function onSetFont() {
     // gCtx.font = "bold 18px Arial"

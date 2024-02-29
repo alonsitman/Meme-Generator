@@ -82,3 +82,8 @@ function moveLine(dx, dy) {
     line.pos.x += dx
     line.pos.y += dy
 }
+
+function setColor(color) {
+    const line = getMemeLine()
+    line.fillColor = color
+}
