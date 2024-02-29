@@ -43,13 +43,35 @@
             <div class="editor-tools">
                 <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onAddTxt(this.value)">
                 <div class="actions">
-                    <button onclick="onSave()">Save</button>
-                    <button onclick="onUploadImg()">Share</button>
-                    <button class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download Meme</a>
-                    <!-- <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download Meme</a> -->
-                    <!-- <button onclick="onClearCanvas()">Clear</button> -->
-                    <!-- <button class="set-color" onclick="onSetColor()"></button> -->
-                    <input type="color" id="set-color" onchange="onSetColor()">
+                    <div class="meme-line-actions">
+                        <button class="btn btn-remove-line" onclick="onRemove()">delete line</button>
+                        <button class="btn btn-duplicate-line" onclick="onDuplicate()">duplicate line</button>
+                        <button class="btn btn-select-next" onclick="onSelectNext()">select next</button>
+                    </div>
+                    <div class="content-actions">
+                        <!-- <button onclick="onClearCanvas()">Clear</button> -->
+                        <button class="btn btn-enlarge-font" onclick="onEnlargeFont()">A+</button>
+                        <button class="btn btn-shrink-font" onclick="onShrinkFont()">A-</button>
+                        <button class="btn btn-align-start" onclick="onAlignStart()">align start</button>
+                        <button class="btn btn-align-center" onclick="onAlignCenter()">align center</button>
+                        <button class="btn btn-align-end" onclick="onAlignEnd()">align end</button>
+                        <select class="select-font" onchange="onSetFont()">
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                        <input type="color" id="set-border-color" onchange="onBorderColor()">
+                        <input type="color" id="set-fill-color" onchange="onFillColor()">
+                    </div>
+                    <div class="file-actions">    
+                        <button class="btn btn-save" onclick="onSave()">Save</button>
+                        <button class="btn btn-share" onclick="onUploadImg()">Share</button>
+                        <!-- <button class="btn" onclick="downloadImg(this)" download="meme.jpg">Download Meme</button> -->
+                        <a href="#" class="btn" onclick="downloadImg(this)" download="meme.jpg">Download Meme</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -64,8 +86,8 @@
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/services/share-to-facebook.service.js"></script>
-    <script src="js/gallery.controller.js"></script>
-    <script src="js/meme.controller.js"></script>
+    <script src="js/controllers/gallery.controller.js"></script>
+    <script src="js/controllers/meme.controller.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

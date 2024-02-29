@@ -26,9 +26,10 @@ function renderMemeLine() {
     var line = getMemeLine()
     const { pos, txt, size, fillColor, borderColor } = line
 
-	gCtx.font = `(${size}px Arial)`
+	gCtx.font = `bold ${size}px Arial`
 	gCtx.fillStyle = fillColor
     gCtx.fillText(txt, pos.x, pos.y)
+	console.log('font:', gCtx.font)
 	// gCtx.strokeText(txt, pos.x, pos.y)
 }
 
@@ -39,9 +40,27 @@ function onAddTxt(txt) {
     renderMeme()
 }
 
-function onSetColor() {
-    const color = document.getElementById('set-color').value
-    setColor(color)
+function onRemove() {
+
+}
+
+function onDuplicate() {
+
+}
+
+function onSelectNext() {
+
+}
+
+function onFillColor() {
+    const color = document.getElementById('set-fill-color').value
+    setFillColor(color)
+    renderMemeLine()
+}
+
+function onBorderColor() {
+	const color = document.getElementById('set-border-color').value
+	setBorderColor(color)
     renderMemeLine()
 }
 
@@ -49,12 +68,14 @@ function onEnlargeFont() {
     // gCtx.font = "bold 18px Arial"
     // gCtx.font = document.querySelector('set-font').value
 	incrementSize()
-	renderMemeLine()
+	// renderMemeLine()
+	renderMeme()
 }
 
 function onShrinkFont() {
-	decrementSizeSize()
-	renderMemeLine()
+	decrementSize()
+	// renderMemeLine()
+	renderMeme()
 }
 
 function onMoveLine(ev) {

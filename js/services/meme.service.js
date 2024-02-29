@@ -30,7 +30,7 @@ var gMeme = {
             {
                 pos: { x: 50, y: 50 },
                 txt: 'I sometimes eat Falafel',
-                size: 20,
+                size: 30,
                 fillColor: 'red',
                 borderColor: 'white',
                 isDrag: false
@@ -83,10 +83,15 @@ function moveLine(dx, dy) {
     line.pos.y += dy
 }
 
-function setColor(color) {
+function setFillColor(color) {
     const line = getMemeLine()
     line.fillColor = color
     console.log('fillcolor:', line.fillColor)
+}
+
+function setBorderColor(color) {
+    const line = getMemeLine()
+    line.borderColor = color
 }
 
 function incrementSize() {

@@ -1,0 +1,19 @@
+.meme-editor {
+    display: flex;
+
+    background-color: lightgray;
+}
+
+.editor-tools {
+    display: grid;
+    
+    width: 100%;
+}
+
+canvas {
+    
+}
+
+.actions {
+    display: grid;
+}
