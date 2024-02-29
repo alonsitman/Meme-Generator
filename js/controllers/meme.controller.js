@@ -16,12 +16,11 @@ function onSelectImg(elImg) {
 
 function renderMeme() {
     var meme = getMeme()
+	
 	var img = document.createElement('img')
     img.src = `img/${gMeme.selectedImgId}.jpg`
-   
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     
-	// renderMemeLine()
 	meme.lines.forEach(line => renderMemeLine(line))
 }
 
@@ -33,7 +32,6 @@ function renderMemeLine(line) {
 	gCtx.fillStyle = fillColor
     gCtx.fillText(txt, pos.x, pos.y)
 	console.log('font:', gCtx.font)
-	// gCtx.strokeText(txt, pos.x, pos.y)
 }
 
 function onAddTxt(txt) {
@@ -42,7 +40,8 @@ function onAddTxt(txt) {
 }
 
 function onRemove() {
-
+	removeLine()
+	renderMeme()
 }
 
 function onDuplicate() {
@@ -56,26 +55,22 @@ function onSelectNext() {
 function onFillColor() {
     const color = document.getElementById('set-fill-color').value
     setFillColor(color)
-    renderMemeLine()
+	renderMeme()
 }
 
 function onBorderColor() {
 	const color = document.getElementById('set-border-color').value
 	setBorderColor(color)
-    renderMemeLine()
+	renderMeme()
 }
 
 function onEnlargeFont() {
-    // gCtx.font = "bold 18px Arial"
-    // gCtx.font = document.querySelector('set-font').value
 	incrementSize()
-	// renderMemeLine()
 	renderMeme()
 }
 
 function onShrinkFont() {
 	decrementSize()
-	// renderMemeLine()
 	renderMeme()
 }
 

@@ -36,7 +36,7 @@ var gMeme = {
                 isDrag: false
             },
             {
-                pos: { x: 80, y: 20 },
+                pos: { x: 80, y: 30 },
                 txt: 'Solidarity Now!',
                 size: 30,
                 fillColor: 'pink',
@@ -91,10 +91,22 @@ function moveLine(dx, dy) {
     line.pos.y += dy
 }
 
+function removeLine() {
+    const meme = getMeme()
+	const removeIdx = meme.selectedLineIdx
+	// console.log('length:', meme.lines.length)
+    // console.log('gMeme:', meme)
+    meme.lines.splice(removeIdx, 1)
+
+    // meme.selectedLineIdx++
+    
+    // console.log('gMeme:', meme)
+    // console.log('length:', meme.lines.length)
+}
+
 function setFillColor(color) {
     const line = getMemeLine()
     line.fillColor = color
-    console.log('fillcolor:', line.fillColor)
 }
 
 function setBorderColor(color) {
