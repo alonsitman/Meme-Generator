@@ -1,11 +1,5 @@
 'use strict'
 
-// var gMeme = {
-//     imgElement: '',
-//     imgSrc: '',
-//     txtLine: ''
-// }
-
 const MEMES_DB = 'memes'
 
 var gImgs = [
@@ -34,10 +28,12 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
             {
+                pos: { x: 50, y: 50 },
                 txt: 'I sometimes eat Falafel',
                 size: 20,
                 fillColor: 'red',
-                borderColor: 'white'
+                borderColor: 'white',
+                isDrag: false
             }
             ]
 }
@@ -56,4 +52,33 @@ function setImg(elImg) {
 function setLineTxt(txt) {
     const lineIdx = gMeme.selectedLineIdx
     gMeme.lines[lineIdx].txt = txt
+}
+
+function getMemeLine() {
+    const lineIdx = gMeme.selectedLineIdx
+    return gMeme.lines[lineIdx]
+}
+
+function isLineClicked(clickedPos) {
+	const line = getMemeLine()
+    let { pos, size, txt } = line
+    size /= 2
+
+	const xDistance = pos.x - clickedPos.x
+    const yDistance = pos.y - clickedPos.y
+        
+	//Check if clickedPos is inside the txt rectangle
+    return (xDistance <= size * txt.length &&
+            yDistance <= size)
+}
+
+function setLineDrag(isDrag) {
+    const line = getMemeLine()
+    line.isDrag = isDrag
+}
+
+function moveLine(dx, dy) {
+    const line = getMemeLine()
+    line.pos.x += dx
+    line.pos.y += dy
 }

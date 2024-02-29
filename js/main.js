@@ -7,15 +7,33 @@ function onInit() {
 	gCtx = gElCanvas.getContext('2d')
 
     resizeCanvas()
-    window.addEventListener('resize', () => resizeCanvas())
-    
+    addListeners()
+
     // renderMeme()
 }
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     
-    // Changing the canvas dimension clears the canvas
     gElCanvas.width = elContainer.clientWidth
+}
+
+function addListeners() {
+	addMouseListeners()
+	addTouchListeners()
+	
+	window.addEventListener('resize', () => resizeCanvas())
+}
+
+function addMouseListeners() {
+	gElCanvas.addEventListener('mousedown', onDown)
+	gElCanvas.addEventListener('mousemove', onMoveLine)
+	gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+	gElCanvas.addEventListener('touchstart', onDown)
+	gElCanvas.addEventListener('touchmove', onMoveLine)
+	gElCanvas.addEventListener('touchend', onUp)
 }
 
