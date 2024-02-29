@@ -44,7 +44,9 @@
                 <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onAddTxt(this.value)">
                 <div class="actions">
                     <button onclick="onSave()">Save</button>
-                    <button onclick="onLoad()">Load</button>
+                    <button onclick="onUploadImg()">Share</button>
+                    <button class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download Meme</a>
+                    <!-- <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download Meme</a> -->
                     <!-- <button onclick="onClearCanvas()">Clear</button> -->
                     <!-- <button class="set-color" onclick="onSetColor()"></button> -->
                     <input type="color" id="set-color" onchange="onSetColor()">

@@ -114,12 +114,10 @@ function onSave() {
     saveToStorage(MEMES_DB, gMeme)
 }
 
-// function onLoad() {
-//     gMeme = loadFromStorage(MEMES_DB)
-//     console.log('gMeme:', gMeme)
-//     console.log('.img:', gMeme.img)
-//     renderMeme()
-// }
+function downloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+    elLink.href = imgContent
+}
 
 // function onClearEdit() {
 
