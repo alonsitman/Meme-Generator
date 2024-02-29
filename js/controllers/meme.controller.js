@@ -7,13 +7,6 @@ let gStartPos
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 
 
-function onSelectImg(elImg) {
-    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
-    
-    setImg(elImg)
-    renderMeme()
-}
-
 function renderMeme() {
     var meme = getMeme()
 	

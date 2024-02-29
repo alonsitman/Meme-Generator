@@ -1,15 +1,16 @@
 'use strict'
 
 function onInit() {
-    renderGallery()
-    
     gElCanvas = document.querySelector('canvas')
 	gCtx = gElCanvas.getContext('2d')
 
+	renderGallery()
     resizeCanvas()
     addListeners()
+	renderMeme()
 
-    // renderMeme()
+	var elEditor = document.querySelector('.meme-editor')
+	elEditor.style.display = 'none'
 }
 
 function resizeCanvas() {
@@ -37,3 +38,22 @@ function addTouchListeners() {
 	gElCanvas.addEventListener('touchend', onUp)
 }
 
+function displayEditor() {
+	var elEditor = document.querySelector('.meme-editor')
+	var elGallery = document.querySelector('.img-gallery')
+
+	if (elEditor.style.display === 'none') {
+		elEditor.style.display = 'flex'
+		elGallery.style.display = 'none'
+	}
+}
+
+function displayGallery() {
+	var elEditor = document.querySelector('.meme-editor')
+	var elGallery = document.querySelector('.img-gallery')
+
+	if (elGallery.style.display === 'none') {
+		elEditor.style.display = 'none'
+		elGallery.style.display = 'block'
+	}
+}
