@@ -15,15 +15,18 @@ function onSelectImg(elImg) {
 }
 
 function renderMeme() {
-    var img = document.createElement('img')
+    var meme = getMeme()
+	var img = document.createElement('img')
     img.src = `img/${gMeme.selectedImgId}.jpg`
    
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    renderMemeLine()
+    
+	// renderMemeLine()
+	meme.lines.forEach(line => renderMemeLine(line))
 }
 
-function renderMemeLine() {
-    var line = getMemeLine()
+function renderMemeLine(line) {
+    // var line = getMemeLine()
     const { pos, txt, size, fillColor, borderColor } = line
 
 	gCtx.font = `bold ${size}px Arial`
@@ -35,8 +38,6 @@ function renderMemeLine() {
 
 function onAddTxt(txt) {
     setLineTxt(txt)
-
-    // renderMemeLine()
     renderMeme()
 }
 

@@ -34,6 +34,14 @@ var gMeme = {
                 fillColor: 'red',
                 borderColor: 'white',
                 isDrag: false
+            },
+            {
+                pos: { x: 80, y: 20 },
+                txt: 'Solidarity Now!',
+                size: 30,
+                fillColor: 'pink',
+                borderColor: 'white',
+                isDrag: false
             }
             ]
 }
