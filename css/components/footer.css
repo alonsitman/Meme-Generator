@@ -1,0 +1,8 @@
+.main-footer {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    height: 100px;
+    background-color: rgb(128, 24, 24);
+}

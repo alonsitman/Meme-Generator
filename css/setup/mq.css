@@ -1,0 +1,49 @@
+/* Mobile Only */
+@media (max-width: 860px) {
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100dvh;
+        /* background: rgb(red, rgb(47, 189, 47), blue); */
+        background: rgb(255 255 255 / 90%);
+        border-inline-start: 1px solid #ccc;
+
+        transform: translateX(100%);
+
+        transition: transform 0.6s, box-shadow 0.6s;
+    }
+
+    body.menu-open .main-nav {
+        transform: translateX(0);
+        box-shadow: -4px 0px 20px rgb(0 0 0 / 30%);
+    }
+
+    .main-nav-list {
+        flex-direction: column;
+        min-width: 200px;
+    }
+
+    .main-nav-list > li {
+        border-bottom: 1px solid #ccc;
+    }
+
+    .main-nav-list a {
+        display: flex;
+        justify-content: center;
+        padding: 6px 10px;
+    }
+
+    .main-nav-list a:hover {
+      background-color: #f2f2f2;
+    }
+}
+
+/* NON-SMARTPHONE */
+@media (min-width: 860px) {
+    
+    .btn-toggle-menu {
+        display: none;
+    }
+}
+    

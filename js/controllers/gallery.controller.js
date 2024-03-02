@@ -14,18 +14,18 @@ function renderGallery() {
 
     strHTML = strHTMLs.join('')
 
-    const elGallery = document.querySelector('.gallery-grid-container')
+    const elGallery = document.querySelector('.img-gallery-grid')
     elGallery.innerHTML = strHTML
 }
 
 function onSelectImg(elImg) {
-    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+    // gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
     
     
     console.log('made it to onSelectImg')
     setImg(elImg)
-    renderMeme()
     displayEditor()
+    renderMeme()
 }
 
 

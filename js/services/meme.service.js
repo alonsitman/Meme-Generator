@@ -28,20 +28,22 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
             {
-                pos: { x: 50, y: 50 },
+                pos: { x: 140, y: 20 },
                 txt: 'I sometimes eat Falafel',
                 size: 30,
-                fillColor: 'red',
-                borderColor: 'white',
-                isDrag: false
+                fillColor: 'white',
+                borderColor: 'black',
+                isDrag: false,
+                lineIdx: 0
             },
             {
-                pos: { x: 80, y: 30 },
+                pos: { x: 150, y: 70 },
                 txt: 'Solidarity Now!',
                 size: 30,
-                fillColor: 'pink',
+                fillColor: 'black',
                 borderColor: 'white',
-                isDrag: false
+                isDrag: false,
+                lineIdx: 1
             }
             ]
 }
@@ -54,30 +56,38 @@ function getMeme() {
 }
 
 function setImg(elImg) {
-    gMeme.selectedImgId = elImg.id
+    const meme = getMeme()
+    meme.selectedImgId = elImg.id
 }
 
 function setLineTxt(txt) {
-    const lineIdx = gMeme.selectedLineIdx
-    gMeme.lines[lineIdx].txt = txt
+    const meme = getMeme()
+    const lineIdx = meme.selectedLineIdx
+    meme.lines[lineIdx].txt = txt
 }
 
 function getMemeLine() {
-    const lineIdx = gMeme.selectedLineIdx
-    return gMeme.lines[lineIdx]
+    const meme = getMeme()
+    const lineIdx = meme.selectedLineIdx
+    return meme.lines[lineIdx]
 }
 
-function isLineClicked(clickedPos) {
-	const line = getMemeLine()
-    let { pos, size, txt } = line
-    size /= 2
+function isLineClicked(line, clickedPos) {
+    var { pos, txt, size } = line
+    const clickX = clickedPos.x
+    const clickY = clickedPos.y
 
-	const xDistance = pos.x - clickedPos.x
-    const yDistance = pos.y - clickedPos.y
-        
-	//Check if clickedPos is inside the txt rectangle
-    return (xDistance <= size * txt.length &&
-            yDistance <= size)
+    var textWidth = gCtx.measureText(txt).width
+    var textHeight = size
+
+    var textBoxX = pos.x - textWidth / 2
+    var textBoxY = pos.y - textHeight / 2
+
+    if (clickX >= textBoxX && clickX <= textBoxX + textWidth &&
+        clickY >= textBoxY && clickY <= textBoxY + textHeight) {
+        return true
+    }
+    return false
 }
 
 function setLineDrag(isDrag) {
@@ -91,17 +101,25 @@ function moveLine(dx, dy) {
     line.pos.y += dy
 }
 
+function addLine() {
+    const meme = getMeme()
+    const newLine = _createLine()
+
+    meme.lines.push(newLine)
+    setSelectedLine(newLine.lineIdx)
+}
+
 function removeLine() {
     const meme = getMeme()
 	const removeIdx = meme.selectedLineIdx
-	// console.log('length:', meme.lines.length)
-    // console.log('gMeme:', meme)
     meme.lines.splice(removeIdx, 1)
 
-    // meme.selectedLineIdx++
-    
-    // console.log('gMeme:', meme)
-    // console.log('length:', meme.lines.length)
+    if (removeIdx) setSelectedLine(removeIdx - 1)
+}
+
+function setSelectedLine(lineIdx) {
+    const meme = getMeme()
+    meme.selectedLineIdx = lineIdx
 }
 
 function setFillColor(color) {
@@ -122,4 +140,22 @@ function incrementSize() {
 function decrementSize() {
     const line = getMemeLine()
     line.size--
+}
+
+function _createLine() {
+    const lineIdx = gMeme.lines.length
+    const newPos = {
+        x: 150 + 50 * lineIdx,
+        y: 50 + 50 * lineIdx
+    }
+    
+    return {
+        pos: newPos,
+        txt: 'Add Text Here',
+        size: 30,
+        fillColor: 'white',
+        borderColor: 'black',
+        isDrag: false,
+        lineIdx: lineIdx
+    }
 }

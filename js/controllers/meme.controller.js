@@ -11,25 +11,55 @@ function renderMeme() {
     var meme = getMeme()
 	
 	var img = document.createElement('img')
-    img.src = `img/${gMeme.selectedImgId}.jpg`
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    img.src = `img/${meme.selectedImgId}.jpg`
     
-	meme.lines.forEach(line => renderMemeLine(line))
+	img.onload = () => {
+		gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+		meme.lines.forEach(line => renderMemeLine(line))
+	}
 }
 
 function renderMemeLine(line) {
-    // var line = getMemeLine()
-    const { pos, txt, size, fillColor, borderColor } = line
+    var { pos, txt, size, fillColor, borderColor, lineIdx } = line
 
-	gCtx.font = `bold ${size}px Arial`
-	gCtx.fillStyle = fillColor
+	gCtx.beginPath()
+
+    gCtx.font = `${size}px impact bold`
+    gCtx.fillStyle = fillColor
+    gCtx.strokeStyle = borderColor
+    gCtx.lineWidth = 1
+	gCtx.textAlign = 'center'
+	gCtx.textBaseline = 'middle'
+
+	gCtx.strokeText(txt, pos.x, pos.y)
     gCtx.fillText(txt, pos.x, pos.y)
-	console.log('font:', gCtx.font)
+
+	gCtx.closePath()
+
+	if (lineIdx === gMeme.selectedLineIdx) {
+		drawLineFrame(line)
+	}
 }
 
-function onAddTxt(txt) {
+function drawLineFrame(line) {
+	var { pos, txt, size } = line
+
+	var textWidth = gCtx.measureText(txt).width
+    var textHeight = size
+	var textBoxX = pos.x - textWidth / 2 
+	var textBoxY = pos.y - textHeight / 2
+
+	gCtx.strokeRect(textBoxX, textBoxY, textWidth, textHeight)
+}
+
+function onTxtInput(txt) {
     setLineTxt(txt)
     renderMeme()
+}
+
+function onAddLine() {
+	addLine()
+	renderMeme()
 }
 
 function onRemove() {
@@ -37,12 +67,16 @@ function onRemove() {
 	renderMeme()
 }
 
-function onDuplicate() {
-
-}
-
-function onSelectNext() {
-
+function onSwitchLine() {
+	const meme = getMeme()
+	var currIdx = meme.selectedLineIdx
+	
+	if (currIdx < meme.lines.length - 1) currIdx++
+	else currIdx = 0 
+	
+	setSelectedLine(currIdx)
+	renderMeme()
+	console.log('yo i made it')
 }
 
 function onFillColor() {
@@ -67,36 +101,38 @@ function onShrinkFont() {
 	renderMeme()
 }
 
+function onDown(ev) {
+	const clickedPos = getEvPos(ev)
+	const meme = getMeme()
+
+	meme.lines.forEach((line) => {
+		if (isLineClicked(line, clickedPos)) {
+			setSelectedLine(line.lineIdx)
+			setLineDrag(true)
+			gStartPos = clickedPos
+			document.body.style.cursor = 'grabbing'
+		}
+	}) 
+}
+
 function onMoveLine(ev) {
-	const { isDrag } = getMemeLine()
+	const line = getMemeLine()
+	const { isDrag } = line
 	if (!isDrag) return
 
 	const pos = getEvPos(ev)
-	// Calc the delta, the diff we moved
 	const dx = pos.x - gStartPos.x
 	const dy = pos.y - gStartPos.y
 	moveLine(dx, dy)
 
-	// Save the last pos, we remember where we`ve been and move accordingly
 	gStartPos = pos
-	
-    // The canvas is rendered again after every move
-	renderMeme()
-}
-
-function onDown(ev) {
-	const clickedPos = getEvPos(ev)
-    if (!isLineClicked(clickedPos)) return
-
-	setLineDrag(true)
-	//Save the pos we start from
-    gStartPos = clickedPos
-	document.body.style.cursor = 'grabbing'
 }
 
 function onUp() {
 	setLineDrag(false)
 	document.body.style.cursor = 'grab'
+	gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+	renderMeme()
 }
 
 function getEvPos(ev) {
@@ -128,7 +164,3 @@ function downloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = imgContent
 }
-
-// function onClearEdit() {
-
-// }

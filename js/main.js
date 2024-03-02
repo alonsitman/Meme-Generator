@@ -7,9 +7,9 @@ function onInit() {
 	renderGallery()
     resizeCanvas()
     addListeners()
-	renderMeme()
+	// renderMeme()
 
-	var elEditor = document.querySelector('.meme-editor')
+	var elEditor = document.querySelector('.meme-editor-container')
 	elEditor.style.display = 'none'
 }
 
@@ -23,7 +23,10 @@ function addListeners() {
 	addMouseListeners()
 	addTouchListeners()
 	
-	window.addEventListener('resize', () => resizeCanvas())
+	window.addEventListener('resize', () => {
+		resizeCanvas()
+		renderMeme()
+	})
 }
 
 function addMouseListeners() {
@@ -39,8 +42,8 @@ function addTouchListeners() {
 }
 
 function displayEditor() {
-	var elEditor = document.querySelector('.meme-editor')
-	var elGallery = document.querySelector('.img-gallery')
+	var elEditor = document.querySelector('.meme-editor-container')
+	var elGallery = document.querySelector('.img-gallery-container')
 
 	if (elEditor.style.display === 'none') {
 		elEditor.style.display = 'flex'
@@ -49,11 +52,15 @@ function displayEditor() {
 }
 
 function displayGallery() {
-	var elEditor = document.querySelector('.meme-editor')
-	var elGallery = document.querySelector('.img-gallery')
+	var elEditor = document.querySelector('.meme-editor-container')
+	var elGallery = document.querySelector('.img-gallery-container')
 
 	if (elGallery.style.display === 'none') {
 		elEditor.style.display = 'none'
 		elGallery.style.display = 'block'
 	}
+}
+
+function toggleMenu() {
+	document.body.classList.toggle('menu-open')
 }

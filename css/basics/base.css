@@ -1,4 +1,22 @@
-.btn {
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.main-content {
+    /* margin-inline: 0; */
+}
+
+button {
+    cursor: pointer;
     border: none;
     border-radius: 0.5em;
+}
+
+a {
+    /* text-decoration-line: none; */
+    color: rgb(128, 24, 24);
 }

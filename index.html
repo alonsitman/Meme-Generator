@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="css/main.css"/>
     <title>Ultimate Meme Generator</title>
 </head>
-<body onload="onInit()">
-    <header class="main-header">
+<body class="body" onload="onInit()">
+    
+    <div class="main-screen" onclick="toggleMenu()"></div>
+
+    <header class="main-header flex space-between align-center">
        <div class="logo">memeMe</div>
         <nav class="main-nav">
             <ul class="main-nav-list" style="list-style: none">
@@ -15,16 +18,16 @@
                 <li><a href="#" style="text-decoration: none">About</a></li>
             </ul>
         </nav>
-        <button class="toggle-menu-btn" hidden onclick="toggleMenu()" type="button">☰</button>
+        <button class="btn-toggle-menu" onclick="toggleMenu()" type="button">☰</button>
     </header>
     
-    <main class="main-content">
-        <section class="img-gallery">
-            <div class="search-filter-options">
+    <main class="main-content flex justify-center align-center">
+        <section class="img-gallery-container">
+            <div class="search-filter-options grid">
                 <div class="search-bar">
                     <input type="text" class="search-text-input" placeholder="Enter search keyword">
                 </div>
-                <div class="filter-container">
+                <div class="filter-container flex space-between align-center">
                     <button>funny</button>
                     <button>surprised</button>
                     <button>sad</button>
@@ -32,47 +35,47 @@
                 </div>
             </div>
             
-            <div class="gallery-grid-container"></div>
+            <div class="img-gallery-grid"></div>
         </section>
 
-        <section class="meme-editor">
+        <section class="meme-editor-container">
             <div class="canvas-container">   
-                <canvas width="450" height="450" class="meme-editor-canvas"></canvas>
+                <canvas width="500" height="500" class="meme-editor-canvas"></canvas>
             </div>
 
             <div class="editor-tools">
-                <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onAddTxt(this.value)">
-                <div class="actions">
-                    <div class="meme-line-actions">
-                        <button class="btn btn-remove-line" onclick="onRemove()">delete line</button>
-                        <button class="btn btn-duplicate-line" onclick="onDuplicate()">duplicate line</button>
-                        <button class="btn btn-select-next" onclick="onSelectNext()">select next</button>
-                    </div>
-                    <div class="content-actions">
-                        <!-- <button onclick="onClearCanvas()">Clear</button> -->
-                        <button class="btn btn-enlarge-font" onclick="onEnlargeFont()">A+</button>
-                        <button class="btn btn-shrink-font" onclick="onShrinkFont()">A-</button>
-                        <button class="btn btn-align-start" onclick="onAlignStart()">align start</button>
-                        <button class="btn btn-align-center" onclick="onAlignCenter()">align center</button>
-                        <button class="btn btn-align-end" onclick="onAlignEnd()">align end</button>
-                        <select class="select-font" onchange="onSetFont()">
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                        </select>
-                        <input type="color" id="set-border-color" onchange="onBorderColor()">
-                        <input type="color" id="set-fill-color" onchange="onFillColor()">
-                    </div>
-                    <div class="file-actions">    
-                        <button class="btn btn-save" onclick="onSave()">Save</button>
-                        <button class="btn btn-share" onclick="onUploadImg()">Share</button>
-                        <!-- <button class="btn" onclick="downloadImg(this)" download="meme.jpg">Download Meme</button> -->
-                        <a href="#" class="btn" onclick="downloadImg(this)" download="meme.jpg">Download Meme</a>
-                    </div>
+                <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onTxtInput(this.value)">
+        
+                <div class="meme-line-actions flex justify-center align-center">
+                    <button class="btn btn-remove-line" onclick="onRemove()"></button>
+                    <button class="btn btn-duplicate-line" onclick="onAddLine()"></button>
+                    <button class="btn btn-select-next" onclick="onSwitchLine()"></button>
                 </div>
+                <div class="content-actions">
+                    <!-- <button onclick="onClearCanvas()">Clear</button> -->
+                    <button class="btn btn-enlarge-font" onclick="onEnlargeFont()"></button>
+                    <button class="btn btn-shrink-font" onclick="onShrinkFont()"></button>
+                    <button class="btn btn-align-start" onclick="onAlignStart()"></button>
+                    <button class="btn btn-align-center" onclick="onAlignCenter()"></button>
+                    <button class="btn btn-align-end" onclick="onAlignEnd()"></button>
+                    <select class="select-font" onchange="onSetFont()">
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                    <input type="color" id="set-border-color" onchange="onBorderColor()">
+                    <input type="color" id="set-fill-color" onchange="onFillColor()">
+                </div>
+                <div class="file-actions flex justify-center align-center">    
+                    <button class="btn btn-save" onclick="onSave()">Save</button>
+                    <button class="btn btn-share" onclick="onUploadImg()"></button>
+                    <!-- <button class="btn" onclick="downloadImg(this)" download="meme.jpg">Download Meme</button> -->
+                    <a href="#" class="btn" onclick="downloadImg(this)" download="meme.jpg">Download Meme</a>
+                </div>
+                
             </div>
         </section>
     </main>

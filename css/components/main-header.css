@@ -1,0 +1,48 @@
+.main-header {
+    height: 100px;
+    font-size: 3em;
+
+    background-color: rgb(128, 24, 24);
+}
+
+.logo {
+    margin-inline-start: 20px;
+
+    color: white;
+}
+
+.main-nav {
+    width: 40%;
+}
+
+.main-nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    color: white
+}
+
+.btn-toggle-menu {
+    margin-right: 20px;
+
+    font: 0.8em sans-serif;
+    border: none;
+    color: white;
+    background-color: rgb(128, 24, 24);
+}
+
+@media (min-width: 860px) {
+    .main-nav {
+        margin-right: 40px;
+    }
+
+    .main-nav-list {
+        justify-content: end;
+        gap: 20px;
+    }
+
+    .logo {
+        margin-inline-start: 40px;
+    }
+}
