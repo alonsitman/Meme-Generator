@@ -1,26 +1,27 @@
 'use strict'
 
-const MEMES_DB = 'memes'
+const MEMES_DB = 'memesDB'
+const gSavedMemes = loadFromStorage(MEMES_DB)
 
 var gImgs = [
-    {id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat']},
-    {id: 2, url: 'img/2.jpg', keywords: ['funny', 'cat']},
-    {id: 3, url: 'img/3.jpg', keywords: ['funny', 'cat']},
-    {id: 4, url: 'img/4.jpg', keywords: ['funny', 'cat']},
-    {id: 5, url: 'img/5.jpg', keywords: ['funny', 'cat']},
-    {id: 6, url: 'img/6.jpg', keywords: ['funny', 'cat']},
-    {id: 7, url: 'img/7.jpg', keywords: ['funny', 'cat']},
-    {id: 8, url: 'img/8.jpg', keywords: ['funny', 'cat']},
-    {id: 9, url: 'img/9.jpg', keywords: ['funny', 'cat']},
-    {id: 10, url: 'img/10.jpg', keywords: ['funny', 'cat']},
-    {id: 11, url: 'img/11.jpg', keywords: ['funny', 'cat']},
-    {id: 12, url: 'img/12.jpg', keywords: ['funny', 'cat']},
-    {id: 13, url: 'img/13.jpg', keywords: ['funny', 'cat']},
-    {id: 14, url: 'img/14.jpg', keywords: ['funny', 'cat']},
-    {id: 15, url: 'img/15.jpg', keywords: ['funny', 'cat']},
-    {id: 16, url: 'img/16.jpg', keywords: ['funny', 'cat']},
-    {id: 17, url: 'img/17.jpg', keywords: ['funny', 'cat']},
-    {id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat']}
+    {id: 1, url: 'img/1.jpg', keywords: ['evil', 'funny', 'classic']},
+    {id: 2, url: 'img/2.jpg', keywords: ['pets', 'classic']},
+    {id: 3, url: 'img/3.jpg', keywords: ['babies', 'pets']},
+    {id: 4, url: 'img/4.jpg', keywords: ['pets', 'classic']},
+    {id: 5, url: 'img/5.jpg', keywords: ['babies', 'funny']},
+    {id: 6, url: 'img/6.jpg', keywords: ['surprise']},
+    {id: 7, url: 'img/7.jpg', keywords: ['babies', 'surprise']},
+    {id: 8, url: 'img/8.jpg', keywords: ['funny']},
+    {id: 9, url: 'img/9.jpg', keywords: ['babies', 'funny']},
+    {id: 10, url: 'img/10.jpg', keywords: ['funny', 'classic']},
+    {id: 11, url: 'img/11.jpg', keywords: ['surprise', 'classic']},
+    {id: 12, url: 'img/12.jpg', keywords: ['classic']},
+    {id: 13, url: 'img/13.jpg', keywords: ['classic']},
+    {id: 14, url: 'img/14.jpg', keywords: ['surprise', 'classic']},
+    {id: 15, url: 'img/15.jpg', keywords: ['classic']},
+    {id: 16, url: 'img/16.jpg', keywords: ['funny']},
+    {id: 17, url: 'img/17.jpg', keywords: ['evil', 'classic']},
+    {id: 18, url: 'img/18.jpg', keywords: ['']}
 ]
 
 var gMeme = {
@@ -53,61 +54,27 @@ var gMeme = {
 var gKeywordSearchCountMap = {'funny': 12,'cat': 16, 'baby': 2}
 
 
+function createMeme() {
+    gMeme = {
+        id: makeId(),
+        selectedImgId: 0,
+        selectedLineIdx: 0,
+        lines: [_createLine()],
+    }
+}
+
 function getMeme() {
     return gMeme
 }
 
-function setImg(elImg) {
-    const meme = getMeme()
-    meme.selectedImgId = elImg.id
-}
-
-function setLineTxt(txt) {
-    const meme = getMeme()
-    const lineIdx = meme.selectedLineIdx
-    meme.lines[lineIdx].txt = txt
-}
-
-function getMemeLine() {
-    const meme = getMeme()
-    const lineIdx = meme.selectedLineIdx
-    return meme.lines[lineIdx]
-}
-
-function isLineClicked(line, clickedPos) {
-    var { pos, txt, size } = line
-    const clickX = clickedPos.x
-    const clickY = clickedPos.y
-
-    var textWidth = gCtx.measureText(txt).width
-    var textHeight = size
-
-    var textBoxX = pos.x - textWidth / 2
-    var textBoxY = pos.y - textHeight / 2
-
-    if (clickX >= textBoxX && clickX <= textBoxX + textWidth &&
-        clickY >= textBoxY && clickY <= textBoxY + textHeight) {
-        return true
-    }
-    return false
-}
-
-function setLineDrag(isDrag) {
-    const line = getMemeLine()
-    line.isDrag = isDrag
-}
-
-function moveLine(dx, dy) {
-    const line = getMemeLine()
-    line.pos.x += dx
-    line.pos.y += dy
+function getCurrLine() {
+    const lineIdx = gMeme.selectedLineIdx
+    return gMeme.lines[lineIdx]
 }
 
 function addLine() {
-    const meme = getMeme()
     const newLine = _createLine()
-
-    meme.lines.push(newLine)
+    gMeme.lines.push(newLine)
     setSelectedLine(newLine.lineIdx)
 }
 
@@ -119,33 +86,52 @@ function removeLine() {
     if (removeIdx) setSelectedLine(removeIdx - 1)
 }
 
+function moveLine(dx, dy) {
+    const line = getCurrLine()
+    line.pos.x += dx
+    line.pos.y += dy
+}
+
+function setImg(elImg) {
+    gMeme.selectedImgId = elImg.id
+}
+
+function setLineTxt(txt) {
+    const lineIdx = gMeme.selectedLineIdx
+    gMeme.lines[lineIdx].txt = txt
+}
+
+function setLineDrag(isDrag) {
+    const line = getCurrLine()
+    line.isDrag = isDrag
+}
+
 function setSelectedLine(lineIdx) {
     const meme = getMeme()
     meme.selectedLineIdx = lineIdx
 }
 
 function setFillColor(color) {
-    const line = getMemeLine()
+    const line = getCurrLine()
     line.fillColor = color
 }
 
 function setBorderColor(color) {
-    const line = getMemeLine()
+    const line = getCurrLine()
     line.borderColor = color
 }
 
 function incrementSize() {
-    const line = getMemeLine()
+    const line = getCurrLine()
     line.size++
 }
 
 function decrementSize() {
-    const line = getMemeLine()
+    const line = getCurrLine()
     line.size--
 }
 
 function _createLine() {
-    const lineIdx = gMeme.lines.length
     const newPos = {
         x: 150 + 50 * lineIdx,
         y: 50 + 50 * lineIdx
@@ -159,6 +145,6 @@ function _createLine() {
         fillColor: 'white',
         borderColor: 'black',
         isDrag: false,
-        lineIdx: lineIdx
+        lineIdx: gMeme.lines.length
     }
 }

@@ -11,29 +11,48 @@
     <div class="main-screen" onclick="toggleMenu()"></div>
 
     <header class="main-header flex space-between align-center">
-       <div class="logo">memeMe</div>
+        <div class="logo">memeMe</div>
+        
         <nav class="main-nav">
             <ul class="main-nav-list" style="list-style: none">
                 <li><a href="#" onclick="displayGallery()" style="text-decoration: none">Gallery</a></li>
-                <li><a href="#" style="text-decoration: none">About</a></li>
+                <li><a href="#">About</a></li>
             </ul>
         </nav>
+        
         <button class="btn-toggle-menu" onclick="toggleMenu()" type="button">☰</button>
     </header>
     
     <main class="main-content flex justify-center align-center">
         <section class="img-gallery-container">
-            <div class="search-filter-options grid">
+            <header class="gallery-header grid">
                 <div class="search-bar">
-                    <input type="text" class="search-text-input" placeholder="Enter search keyword">
+                    <input
+                        type="text" 
+                        class="filter-input"
+                        name="filter-input" 
+                        list="keywords"
+                        placeholder="Enter search keyword"
+                        oninput="onSetFilter(this.value)"
+                    />
+
+                    <datalist id="keywords">
+                        <option value="Funny" data-trans="Funny"></option>
+                        <option value="Evil" data-trans="Evil"></option>
+                        <option value="Pets" data-trans="Pets"></option>
+                        <option value="Babies" data-trans="Babies"></option>
+                        <option value="Classic" data-trans="Classic"></option>
+                        <option value="Surprise" data-trans="Surprise"></option>
+                    </datalist>
+
                 </div>
-                <div class="filter-container flex space-between align-center">
-                    <button>funny</button>
-                    <button>surprised</button>
-                    <button>sad</button>
-                    <button>dogs</button>
-                </div>
-            </div>
+                <ul class="filter-container flex space-between align-center">
+                    <li><button>Funny</button></li>
+                    <li><button>Surprised</button></li>
+                    <li><button>Classic</button></li>
+                    <li><button>Pets</button></li>
+                </ul>
+            </header>
             
             <div class="img-gallery-grid"></div>
         </section>

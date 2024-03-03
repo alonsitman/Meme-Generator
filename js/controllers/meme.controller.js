@@ -117,7 +117,7 @@ function onDown(ev) {
 }
 
 function onMoveLine(ev) {
-	const line = getMemeLine()
+	const line = getCurrLine()
 	const { isDrag } = line
 	if (!isDrag) return
 
@@ -135,6 +135,24 @@ function onUp() {
 	document.body.style.cursor = 'grab'
 	gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 	renderMeme()
+}
+
+function isLineClicked(line, clickedPos) {
+    var { pos, txt, size } = line
+    const clickX = clickedPos.x
+    const clickY = clickedPos.y
+
+    var textWidth = gCtx.measureText(txt).width
+    var textHeight = size
+
+    var textBoxX = pos.x - textWidth / 2
+    var textBoxY = pos.y - textHeight / 2
+
+    if (clickX >= textBoxX && clickX <= textBoxX + textWidth &&
+        clickY >= textBoxY && clickY <= textBoxY + textHeight) {
+        return true
+    }
+    return false
 }
 
 function getEvPos(ev) {
@@ -166,3 +184,9 @@ function downloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = imgContent
 }
+
+
+// style="text-decoration: none"
+// search-filter-options = gallery-header
+// search-text-input = filter-input
+ 
