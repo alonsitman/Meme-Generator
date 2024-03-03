@@ -155,26 +155,6 @@ function isLineClicked(line, clickedPos) {
     return false
 }
 
-function getEvPos(ev) {
-	let pos = {
-		x: ev.offsetX,
-		y: ev.offsetY,
-	}
-
-	if (TOUCH_EVENTS.includes(ev.type)) {
-		
-		ev.preventDefault()         // Prevent triggering the mouse events
-		ev = ev.changedTouches[0]   // Gets the first touch point
-
-		// Calc pos according to the touch screen
-		pos = {
-			x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-			y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-		}
-	}
-	return pos
-}
-
 function onSave() {
     console.log('saved this:', gMeme)
     saveToStorage(MEMES_DB, gMeme)
@@ -189,4 +169,3 @@ function downloadImg(elLink) {
 // style="text-decoration: none"
 // search-filter-options = gallery-header
 // search-text-input = filter-input
- 
