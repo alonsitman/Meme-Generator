@@ -2,6 +2,7 @@
 
 const MEMES_DB = 'memesDB'
 const gSavedMemes = loadFromStorage(MEMES_DB)
+var gMeme 
 
 var gImgs = [
     {id: 1, url: 'img/1.jpg', keywords: ['evil', 'funny', 'classic']},
@@ -24,35 +25,36 @@ var gImgs = [
     {id: 18, url: 'img/18.jpg', keywords: ['']}
 ]
 
-var gMeme = {
-    selectedImgId: 1,
-    selectedLineIdx: 0,
-    lines: [
-            {
-                pos: { x: 200, y: 70 },
-                txt: 'I sometimes eat Falafel',
-                size: 35,
-                font: 'Impact',
-                fillColor: 'white',
-                borderColor: 'black',
-                isDrag: false,
-                lineIdx: 0
-            },
-            {
-                pos: { x: 140, y: 20 },
-                txt: 'Solidarity Now!',
-                size: 30,
-                font: 'Impact',
-                fillColor: 'white',
-                borderColor: 'black',
-                isDrag: false,
-                lineIdx: 1
-            }
-            ]
-}
-
 var gKeywordSearchCountMap = {'funny': 12,'cat': 16, 'baby': 2}
 
+
+function _createDemoMeme() {
+    createMeme()
+    gMeme.selectedImgId = 11
+    addLine()
+    gMeme.lines = [
+                {
+                    pos: { x: 200, y: 70 },
+                    txt: 'I sometimes eat Falafel',
+                    size: 35,
+                    font: 'Impact',
+                    fillColor: 'white',
+                    borderColor: 'black',
+                    isDrag: false,
+                    lineIdx: 0
+                },
+                {
+                    pos: { x: 140, y: 20 },
+                    txt: 'Solidarity Now!',
+                    size: 30,
+                    font: 'Impact',
+                    fillColor: 'white',
+                    borderColor: 'black',
+                    isDrag: false,
+                    lineIdx: 1
+                }
+                ]
+}
 
 function createMeme() {
     gMeme = {
@@ -92,6 +94,10 @@ function moveLine(dx, dy) {
     line.pos.y += dy
 }
 
+function setSelectedLine(lineIdx) {
+    gMeme.selectedLineIdx = lineIdx
+}
+
 function setImg(elImg) {
     gMeme.selectedImgId = elImg.id
 }
@@ -104,11 +110,6 @@ function setLineTxt(txt) {
 function setLineDrag(isDrag) {
     const line = getCurrLine()
     line.isDrag = isDrag
-}
-
-function setSelectedLine(lineIdx) {
-    const meme = getMeme()
-    meme.selectedLineIdx = lineIdx
 }
 
 function setFillColor(color) {
