@@ -127,6 +127,7 @@ function onMoveLine(ev) {
 	moveLine(dx, dy)
 
 	gStartPos = pos
+	renderMeme()
 }
 
 function onUp() {

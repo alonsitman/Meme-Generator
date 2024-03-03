@@ -15,23 +15,16 @@
     display: grid;
     align-items: center;
     justify-self: center;
-    /* grid-template-rows: minmax(300px, 1fr); */
-    /* flex: 1 1 0px; */
-    /* height: calc(50vh - 100px); */
-    /* height: 0; */
+   
+    justify-content: center;
     margin-top: 10px;
     
     border-radius: 5px;
-    /* align-items: center; */
-    justify-content: center;
 }
 
 .meme-editor-canvas {
-    /* grid-column: 2; */
-    
-    /* width: 470px; */
-    /* width: 100% */
-    /* height: ; */
+    width: 370px;
+    height:370px ;
     
     border-radius: 5px;
 }
@@ -39,7 +32,7 @@
 .editor-tools {
     display: grid;
     grid-template-rows: 1fr 1fr 2fr 1fr;
-    grid-template-columns: 476px;
+    grid-template-columns: 370px;
     
     flex-grow: 1;
     /* align-self: center; */
@@ -88,34 +81,16 @@
 }
 
 .color-input-container input {
-    /* position: absolute; */
-    /* gap: 60px; */
-    /* margin-right: 30px; */
     width: 20%;
-    /* border: none; */
-    /* height: 100%; */
-    /* padding: none; */
+
     opacity: 0;
     cursor: pointer;
 }
 
 .color-input-container img {
-    /* position: absolute; */
-    
     width: 35px;
-    /* height: 30px; */
     
     cursor: pointer;
-    /* background-size: contain;  */
-    /* background-repeat: no-repeat; */
-    /* background-position: center; */
-
-    /* padding: 15px 15px; */
-}
-
-.brush-icon {
-    /* margin-left: 15px; */
-
 }
 
 .set-fill-color {
@@ -136,7 +111,6 @@
     justify-items: center;
 
     margin-top: 10px;
-    /* gap: 15px; */
 }
 
 .file-actions .btn {
@@ -206,34 +180,32 @@
 
 
 @media (min-width: 800px) {
-    body {
-        /* margin-inline: 60px; */
-    }
     
     .meme-editor-container {
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
         margin-inline: 0;
-        gap: 25px;
+        gap: 80px;
         width: 100%;
     }
 
     .editor-tools {
         flex: 1 0 0;
-
+        justify-content: start;
         /* margin-right: 30px; */
-        height: 500px;
-        /* width: minmax(50%, 500px); */
+        height: 450px;
     }
 
     .canvas-container {
-        /* grid-template-columns: 500px; */
-        height: 500px;
-        /* width: minmax(50%, 500px); */
         flex: 1 0 0;
-        /* justify-; */
+        justify-content: end;
         padding-left: 40px;
+    }
+
+    .meme-editor-canvas {
+        width: 450px;
+        height: 450px;
     }
 
 
