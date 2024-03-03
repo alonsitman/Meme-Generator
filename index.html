@@ -40,16 +40,16 @@
 
         <section class="meme-editor-container">
             <div class="canvas-container">   
-                <canvas width="500" height="500" class="meme-editor-canvas"></canvas>
+                <canvas width="375" height="375" class="meme-editor-canvas"></canvas>
             </div>
 
             <div class="editor-tools">
                 <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onTxtInput(this.value)">
         
-                <div class="meme-line-actions flex justify-center align-center">
-                    <button class="btn btn-remove-line" onclick="onRemove()"></button>
-                    <button class="btn btn-duplicate-line" onclick="onAddLine()"></button>
+                <div class="meme-line-actions">
                     <button class="btn btn-select-next" onclick="onSwitchLine()"></button>
+                    <button class="btn btn-duplicate-line" onclick="onAddLine()"></button>
+                    <button class="btn btn-remove-line" onclick="onRemove()"></button>
                 </div>
                 <div class="content-actions">
                     <!-- <button onclick="onClearCanvas()">Clear</button> -->
@@ -59,19 +59,27 @@
                     <button class="btn btn-align-center" onclick="onAlignCenter()"></button>
                     <button class="btn btn-align-end" onclick="onAlignEnd()"></button>
                     <select class="select-font" onchange="onSetFont()">
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                        <option value="impact">Impact</option>
+                        <option value="arial">Arial</option>
+                        <option value="cursive">Cursive</option>
+                        <option value="times new roman">Times New Roman</option>
+                        <option value="sans serif">Sans Serif</option>
+                        <option value="courier new">Courier New</option>
                     </select>
-                    <input type="color" id="set-border-color" onchange="onBorderColor()">
-                    <input type="color" id="set-fill-color" onchange="onFillColor()">
+                    <div class="color-input-container">
+                        <input type="color" id="set-border-color" onchange="onBorderColor()">
+                        <label for="set-border-color">
+                            <img src="/Icons/text stroke.png" class="color-icon" alt="Set color">
+                        </label>
+                        <input type="color" id="set-fill-color" onchange="onFillColor()">
+                        <label for="set-fill-color">
+                            <img src="Icons/paint-board-and-brush.png" class="brush-icon" alt="Set fill color">
+                        </label>
+                    </div>
                 </div>
-                <div class="file-actions flex justify-center align-center">    
-                    <button class="btn btn-save" onclick="onSave()">Save</button>
-                    <button class="btn btn-share" onclick="onUploadImg()"></button>
+                <div class="file-actions">    
+                    <button class="btn btn-share" onclick="onUploadImg()">Share</button>
+                    <button class="btn btn-save" onclick="onSave()">Favorites</button>
                     <!-- <button class="btn" onclick="downloadImg(this)" download="meme.jpg">Download Meme</button> -->
                     <a href="#" class="btn" onclick="downloadImg(this)" download="meme.jpg">Download Meme</a>
                 </div>

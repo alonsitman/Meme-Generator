@@ -1,52 +1,67 @@
 .meme-editor-container {
     display: flex;
     flex-direction: column;
+    /* display: grid; */
+    /* grid-template-rows: 1v; */
     
     width: 100%;
     height: calc(100vh - 200px);
-    margin-inline: 20px;
     
+    padding: 20px;
     background-color: lightgray;
 }
 
 .canvas-container {
     display: grid;
-    grid-template-columns: 1fr 500px 1fr;
+    align-items: center;
+    justify-self: center;
+    /* grid-template-rows: minmax(300px, 1fr); */
     /* flex: 1 1 0px; */
     /* height: calc(50vh - 100px); */
     /* height: 0; */
     margin-top: 10px;
-
+    
+    border-radius: 5px;
     /* align-items: center; */
     justify-content: center;
-
 }
 
 .meme-editor-canvas {
-    /* flex: 0 0 0px; */
-    grid-column: 2;
+    /* grid-column: 2; */
     
-    width: 500px;
-    height: 500px;
+    /* width: 470px; */
+    /* width: 100% */
+    /* height: ; */
     
-    display: block;
+    border-radius: 5px;
 }
 
 .editor-tools {
     display: grid;
     grid-template-rows: 1fr 1fr 2fr 1fr;
+    grid-template-columns: 476px;
     
-    flex: 1 1 0px;
+    flex-grow: 1;
+    /* align-self: center; */
+    justify-content: center;
+    width: 100%;
     height: 0;
+}
 
-    width: 500px;
-    
-    align-self: center;
-    justify-content: space-evenly;
+.editor-tools .btn {
+    padding: 15px 15px;
+    border: none; 
+    width: 50px;
+    height: 30px;    
+}
+
+.editor-tools > * {
+    margin-top: 10px;
 }
 
 .meme-line-actions {
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .content-actions {
@@ -54,37 +69,99 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
     
-    justify-self: center;
+    margin-top: 5px;
+}
+
+.meme-line-actions .btn,
+.content-actions .btn {
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.color-input-container {
+    grid-area: 2 / 4 / -1 / -1;
+
+    display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    gap: 15px;
-    /* width: max-content; */
+    
+}
+
+.color-input-container input {
+    /* position: absolute; */
+    /* gap: 60px; */
+    /* margin-right: 30px; */
+    width: 20%;
+    /* border: none; */
+    /* height: 100%; */
+    /* padding: none; */
+    opacity: 0;
+    cursor: pointer;
+}
+
+.color-input-container img {
+    /* position: absolute; */
+    
+    width: 35px;
+    /* height: 30px; */
+    
+    cursor: pointer;
+    /* background-size: contain;  */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+
+    /* padding: 15px 15px; */
+}
+
+.brush-icon {
+    /* margin-left: 15px; */
+
+}
+
+.set-fill-color {
+    left: 20px;
 }
 
 .select-font {
     grid-column: span 3;
+
+    align-self: center;
+    width: 80%;
+    padding: 10px;
 }
 
 .file-actions {
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+
+    margin-top: 10px;
+    /* gap: 15px; */
+}
+
+.file-actions .btn {
+    color: white;
+    background-color: rgb(128, 24, 24);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+    padding: 10px;
+    width: max-content;
+}
+
+.file-actions a {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 0.8em;
+    text-decoration: none;
+    border-radius: 10px;
 }
 
 .meme-text-input {
     margin-top: 10px;
-    margin-inline: 25px;
+    height: 60%;
     
-    border-radius: 15px;
-}
-
-.editor-tools .btn {
-    padding: 10px 20px;
-    border: none; 
-    /* width: 50px; */
-    /* height: 30px; */
-    
-    background-size: contain; 
-    background-repeat: no-repeat;
-    background-position: center;
+    font-size: 1.2em;
+    border-radius: 10px;
+    border: none;
 }
 
 .btn-remove-line {
@@ -96,6 +173,8 @@
 }
 
 .btn-select-next {
+    grid-column: 2;
+    
     background-image: url('/Icons/up-and-down-opposite-double-arrows-side-by-side.png');
 }
 
@@ -120,24 +199,100 @@
 }
 
 .btn-share {
-    background-image: url('/Icons/facebook-logo.png');
-}
-
-#set-border-color {
-    background-image: url('/Icons/text\ stroke.png')
+    /* background-image: url('/Icons/facebook-logo.png'); */
 }
 
 
-@media (min-width: 860px) {
+
+
+@media (min-width: 800px) {
+    body {
+        /* margin-inline: 60px; */
+    }
+    
     .meme-editor-container {
-        /* flex-direction: row; */
-        /* align-items: center; */
-        /* justify-content: space-evenly; */
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin-inline: 0;
+        gap: 25px;
+        width: 100%;
     }
 
     .editor-tools {
+        flex: 1 0 0;
 
+        /* margin-right: 30px; */
+        height: 500px;
+        /* width: minmax(50%, 500px); */
     }
-}
+
+    .canvas-container {
+        /* grid-template-columns: 500px; */
+        height: 500px;
+        /* width: minmax(50%, 500px); */
+        flex: 1 0 0;
+        /* justify-; */
+        padding-left: 40px;
+    }
+
+
+
+    /* main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    } */
+
+    /* .meme-editor-container {
+        /* display: flex;
+        flex-direction: column;
+        /* display: grid; */
+        /* grid-template-rows: 1v; */
+        
+        /* width: 100%;
+        height: calc(100vh - 200px);
+        
+        padding: 20px;
+        background-color: lightgray; */ 
+    /* } */ 
+    
+    /* .canvas-container {
+        display: grid;
+        align-items: center;
+        justify-self: center;
+        /* grid-template-rows: minmax(300px, 1fr); */
+        /* flex: 1 1 0px; */
+        /* height: calc(50vh - 100px); */
+        /* height: 0; */
+        /* margin-top: 10px;
+        
+        border-radius: 5px;
+        align-items: center; */
+        /* justify-content: center; */
+    /* } */
+    
+    /* .meme-editor-canvas { */
+        /* grid-column: 2; */
+        
+        /* width: 470px; */
+        /* width: 100% */
+        /* height: ; */
+/*         
+        border-radius: 5px;
+    }
+    
+    .editor-tools {
+        display: grid;
+        grid-template-rows: 1fr 1fr 2fr 1fr;
+        grid-template-columns: 476px;
+        
+        flex-grow: 1;
+        /* align-self: center; */
+        /* justify-content: center;
+        width: 100%;
+        height: 0;
+    /* } */
+    
+} 
 
     

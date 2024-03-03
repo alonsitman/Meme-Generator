@@ -2,7 +2,15 @@
     display: grid;
     align-items: center;
     justify-content: center;
-
+   
     height: 100px;
     background-color: rgb(128, 24, 24);
+}
+
+.logo {
+    font-size: 1.5em;
+}
+
+small {
+    justify-self: end;
 }

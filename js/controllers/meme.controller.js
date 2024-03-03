@@ -24,12 +24,13 @@ function renderMemeLine(line) {
 
 	gCtx.beginPath()
 
-    gCtx.font = `${size}px impact bold`
+    gCtx.font = `${size}px impact`
     gCtx.fillStyle = fillColor
     gCtx.strokeStyle = borderColor
-    gCtx.lineWidth = 1
+    gCtx.lineWidth = 3
 	gCtx.textAlign = 'center'
 	gCtx.textBaseline = 'middle'
+	gCtx.letterSpacing = "2px"
 
 	gCtx.strokeText(txt, pos.x, pos.y)
     gCtx.fillText(txt, pos.x, pos.y)

@@ -1,0 +1,11 @@
+/* html {
+    display: grid;
+    grid-template-columns: 
+        minmax(20px, 1fr)
+        1400px
+        minmax(20px, 1fr);
+}
+
+body {
+    grid-column: 2;
+} */

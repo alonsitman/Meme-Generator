@@ -28,20 +28,22 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
             {
-                pos: { x: 140, y: 20 },
+                pos: { x: 200, y: 70 },
                 txt: 'I sometimes eat Falafel',
-                size: 30,
+                size: 35,
+                font: 'Impact',
                 fillColor: 'white',
                 borderColor: 'black',
                 isDrag: false,
                 lineIdx: 0
             },
             {
-                pos: { x: 150, y: 70 },
+                pos: { x: 140, y: 20 },
                 txt: 'Solidarity Now!',
                 size: 30,
-                fillColor: 'black',
-                borderColor: 'white',
+                font: 'Impact',
+                fillColor: 'white',
+                borderColor: 'black',
                 isDrag: false,
                 lineIdx: 1
             }
@@ -153,6 +155,7 @@ function _createLine() {
         pos: newPos,
         txt: 'Add Text Here',
         size: 30,
+        font: 'Impact',
         fillColor: 'white',
         borderColor: 'black',
         isDrag: false,

@@ -30,10 +30,6 @@
 }
 
 .search-bar {
-    /* display: flex; */
-    /* justify-content: start; */
-    /* flex-grow: 1; */
-    
     margin: 20px auto;
 }
 
@@ -59,8 +55,6 @@
     .search-filter-options {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        /* align-items: center; */
-        /* justify-content: center; */
     }
 
 
@@ -69,9 +63,12 @@
         font-size: large;
     }
 
+    .search-bar {
+        margin-inline-start: 0;
+    }
+
     .img-gallery-container {
         margin-inline: 40px;
     }
-
 
 }
