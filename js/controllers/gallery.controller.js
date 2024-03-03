@@ -19,11 +19,8 @@ function renderGallery() {
 }
 
 function onSelectImg(elImg) {
-    // gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
-    
-    
-    console.log('made it to onSelectImg')
-    setImg(elImg)
+    const imgId = elImg.id
+    setImg(imgId)
     displayEditor()
     renderMeme()
 }

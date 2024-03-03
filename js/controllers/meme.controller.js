@@ -7,6 +7,12 @@ let gStartPos
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 
 
+function renderEditor() {
+	resizeCanvas()
+	hideGallery()
+	displayEditor()
+}
+
 function renderMeme() {
     var meme = getMeme()
 	
@@ -88,17 +94,17 @@ function onFillColor() {
 
 function onBorderColor() {
 	const color = document.getElementById('set-border-color').value
-	setBorderColor(color)
+	setStrokeColor(color)
 	renderMeme()
 }
 
 function onEnlargeFont() {
-	incrementSize()
+	incrementTxtSize()
 	renderMeme()
 }
 
 function onShrinkFont() {
-	decrementSize()
+	decrementTxtSize()
 	renderMeme()
 }
 
@@ -124,7 +130,7 @@ function onMoveLine(ev) {
 	const pos = getEvPos(ev)
 	const dx = pos.x - gStartPos.x
 	const dy = pos.y - gStartPos.y
-	moveLine(dx, dy)
+	updateLinePos(dx, dy)
 
 	gStartPos = pos
 	renderMeme()

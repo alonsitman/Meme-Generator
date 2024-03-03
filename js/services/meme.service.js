@@ -3,6 +3,7 @@
 const MEMES_DB = 'memesDB'
 const gSavedMemes = loadFromStorage(MEMES_DB)
 var gMeme 
+createDemoMeme()
 
 var gImgs = [
     {id: 1, url: 'img/1.jpg', keywords: ['evil', 'funny', 'classic']},
@@ -28,33 +29,34 @@ var gImgs = [
 var gKeywordSearchCountMap = {'funny': 12,'cat': 16, 'baby': 2}
 
 
-function _createDemoMeme() {
+
+function createDemoMeme() {
     createMeme()
-    gMeme.selectedImgId = 11
-    addLine()
-    gMeme.lines = [
-                {
-                    pos: { x: 200, y: 70 },
-                    txt: 'I sometimes eat Falafel',
-                    size: 35,
-                    font: 'Impact',
-                    fillColor: 'white',
-                    borderColor: 'black',
-                    isDrag: false,
-                    lineIdx: 0
-                },
-                {
-                    pos: { x: 140, y: 20 },
-                    txt: 'Solidarity Now!',
-                    size: 30,
-                    font: 'Impact',
-                    fillColor: 'white',
-                    borderColor: 'black',
-                    isDrag: false,
-                    lineIdx: 1
-                }
-                ]
+    setImg(11)
+    setLineTxt('I\'m a lover not a fighter')
 }
+
+//     gMeme.lines = [
+//                 {
+//                     pos: { x: 200, y: 70 },
+//                     txt: 'I sometimes eat Falafel',
+//                     size: 35,
+//                     font: 'Impact',
+//                     fillColor: 'white',
+//                     borderColor: 'black',
+//                     isDrag: false,
+//                 },
+//                 {
+//                     pos: { x: 140, y: 20 },
+//                     txt: 'Solidarity Now!',
+//                     size: 30,
+//                     font: 'Impact',
+//                     fillColor: 'white',
+//                     borderColor: 'black',
+//                     isDrag: false,
+//                 }
+//                 ]
+// }
 
 function createMeme() {
     gMeme = {
@@ -81,30 +83,32 @@ function addLine() {
 }
 
 function removeLine() {
-    const meme = getMeme()
-	const removeIdx = meme.selectedLineIdx
-    meme.lines.splice(removeIdx, 1)
+	const removeIdx = gMeme.selectedLineIdx
+    gMeme.lines.splice(removeIdx, 1)
 
     if (removeIdx) setSelectedLine(removeIdx - 1)
 }
 
-function moveLine(dx, dy) {
+function updateLinePos(dx, dy) {
     const line = getCurrLine()
     line.pos.x += dx
     line.pos.y += dy
 }
 
-function setSelectedLine(lineIdx) {
+function setSelectedLine(lineId) {
+    const { lines } = getMeme()
+    const lineIdx = lines.findIndex(line => line.id === lineId)
+
     gMeme.selectedLineIdx = lineIdx
 }
 
-function setImg(elImg) {
-    gMeme.selectedImgId = elImg.id
+function setImg(imgId) {
+    gMeme.selectedImgId = imgId
 }
 
 function setLineTxt(txt) {
-    const lineIdx = gMeme.selectedLineIdx
-    gMeme.lines[lineIdx].txt = txt
+    const line = getCurrLine()
+    line.txt = txt
 }
 
 function setLineDrag(isDrag) {
@@ -117,35 +121,42 @@ function setFillColor(color) {
     line.fillColor = color
 }
 
-function setBorderColor(color) {
+function setStrokeColor(color) {
     const line = getCurrLine()
-    line.borderColor = color
+    line.strokeColor = color
 }
 
-function incrementSize() {
+function setLineWidth(newWidth) {
+    const line = getCurrLine()
+    line.newWidth
+}
+
+function incrementTxtSize() {
     const line = getCurrLine()
     line.size++
 }
 
-function decrementSize() {
+function decrementTxtSize() {
     const line = getCurrLine()
     line.size--
+    if (line.size < 1) line.size = 1
 }
 
 function _createLine() {
-    const newPos = {
-        x: 150 + 50 * lineIdx,
-        y: 50 + 50 * lineIdx
-    }
+    // const newPos = {
+    //     x: 150 + 50 * gMeme.selectedLineIdx,
+    //     y: 50 + 50 * gMeme.selectedLineIdx
+    // }
     
     return {
-        pos: newPos,
+        id: makeId(),
+        pos: {x: 200, y: 100},
         txt: 'Add Text Here',
         size: 30,
         font: 'Impact',
         fillColor: 'white',
-        borderColor: 'black',
+        strokeColor: 'black',
+        width: 200,
         isDrag: false,
-        lineIdx: gMeme.lines.length
     }
 }
